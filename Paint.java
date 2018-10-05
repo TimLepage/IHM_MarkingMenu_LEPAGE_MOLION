@@ -9,6 +9,12 @@
 
 import static java.lang.Math.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Vector;
 
 import java.awt.BorderLayout;
@@ -37,6 +43,7 @@ import javax.swing.SwingUtilities;
 
 class Paint extends JFrame {
 	Vector<Shape> shapes = new Vector<Shape>();
+	List<ColorShape> shapeColorMap = new ArrayList<ColorShape>();
 	Color currentColor = Color.BLACK;
 
 	class Tool extends AbstractAction implements MouseInputListener {
@@ -86,6 +93,7 @@ class Paint extends JFrame {
 			if (path == null) {
 				path = new Path2D.Double();
 				path.moveTo(o.getX(), o.getY());
+				shapeColorMap.add(new ColorShape(currentColor, path));
 				shapes.add(shape = path);
 			}
 			path.lineTo(e.getX(), e.getY());
@@ -97,6 +105,7 @@ class Paint extends JFrame {
 			if (rect == null) {
 				rect = new Rectangle2D.Double(o.getX(), o.getY(), 0, 0);
 				shapes.add(shape = rect);
+				shapeColorMap.add(new ColorShape(currentColor, rect));
 			}
 			rect.setRect(min(e.getX(), o.getX()), min(e.getY(), o.getY()), abs(e.getX() - o.getX()),
 					abs(e.getY() - o.getY()));
@@ -108,21 +117,13 @@ class Paint extends JFrame {
 			if (oval == null) {
 				oval = new Ellipse2D.Double(o.getX(), o.getY(), 0, 0);
 				shapes.add(shape = oval);
+				shapeColorMap.add(new ColorShape(currentColor, oval));
 			}
 			oval.setFrame(min(e.getX(), o.getX()), min(e.getY(), o.getY()), abs(e.getX() - o.getX()),
 					abs(e.getY() - o.getY()));
 			panel.repaint();
 		}
-	}/*
-		 * new Tool("black") { public void mousePressed(MouseEvent e) {
-		 * currentColor = Color.BLACK; } }, new Tool("red") { public void
-		 * mousePressed(MouseEvent e) { currentColor = Color.RED; } }, new
-		 * Tool("green") { public void mousePressed(MouseEvent e) { currentColor
-		 * = Color.GREEN; }
-		 * 
-		 * }, new Tool("blue") { public void mousePressed(MouseEvent e) {
-		 * currentColor = Color.BLUE; } }
-		 */ };
+	} };
 	Tool tool;
 
 	JPanel panel;
@@ -175,9 +176,11 @@ class Paint extends JFrame {
 				g2.setColor(Color.WHITE);
 				g2.fillRect(0, 0, getWidth(), getHeight());
 
-				for (Shape shape : shapes) {
-					g2.setColor(currentColor);
-					g2.draw(shape);
+				Iterator ite = shapeColorMap.iterator();
+				while(ite.hasNext()){
+					ColorShape current = (ColorShape) ite.next();
+				    g2.setColor(current.getColor());
+				    g2.draw(current.getShape());
 				}
 			}
 		});
