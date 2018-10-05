@@ -18,7 +18,7 @@ import java.awt.Point;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.RenderingHints;
-
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
@@ -80,6 +80,18 @@ class Paint extends JFrame {
 					shapes.add(shape = rect);
 				}
 				rect.setRect(min(e.getX(), o.getX()), min(e.getY(), o.getY()),
+				             abs(e.getX()- o.getX()), abs(e.getY()- o.getY()));
+				panel.repaint();
+			}
+		},
+		new Tool("oval") {
+			public void mouseDragged(MouseEvent e) {
+				Ellipse2D.Double oval = (Ellipse2D.Double)shape;
+				if(oval == null) {
+					oval = new Ellipse2D.Double(o.getX(), o.getY(), 0, 0);
+					shapes.add(shape = oval);
+				}
+				oval.setFrame(min(e.getX(), o.getX()), min(e.getY(), o.getY()),
 				             abs(e.getX()- o.getX()), abs(e.getY()- o.getY()));
 				panel.repaint();
 			}
