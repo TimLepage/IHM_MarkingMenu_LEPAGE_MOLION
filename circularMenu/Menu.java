@@ -24,6 +24,7 @@ public class Menu extends JPanel{
 		this.items = items;
 		this.elementSize = elementSize;
 		this.radius = radius;
+		positionElements();
 	}
 	
 	public void positionElements(){
@@ -37,13 +38,13 @@ public class Menu extends JPanel{
 					elementSize,
 					elementSize
 					);
+			add(items.get(i));
 		}
 	}
 	
 	@Override
 	public void paintComponent(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.fillRect(0, 0, getWidth(), getHeight());
-	}
+		g2d.fillRect(0, 0, getWidth(), getHeight());	}
 	
 }

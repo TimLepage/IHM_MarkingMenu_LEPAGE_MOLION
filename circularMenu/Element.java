@@ -41,6 +41,7 @@ public class Element extends JPanel {
 		super();
 		this.activeColor = activeColor;
 		this.inactiveColor = inactiveColor;
+		this.currentColor = inactiveColor;
 		this.label = label;
 		this.size = size;
 		this.setSize(new Dimension(size, size));

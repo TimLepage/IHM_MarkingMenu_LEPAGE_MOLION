@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class testApp {
 
@@ -22,10 +23,10 @@ public class testApp {
 		items.add(new Element("Menu6", new Color(19, 73, 140), new Color(162, 198, 232), 100));
 		items.add(new Element("Menu7", new Color(19, 73, 140), new Color(162, 198, 232), 100));
 		f.setSize(600, 600);
-		f.add(new Menu(500, 500, 100, 100, items), BorderLayout.CENTER);
+		Menu menu = new Menu(500, 500, 100, 100, items);
+		f.add(menu, BorderLayout.CENTER);
 		
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
 	}
-
 }
