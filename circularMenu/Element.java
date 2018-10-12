@@ -14,8 +14,8 @@ import java.awt.event.MouseListener;
 
 public class Element extends JPanel {
 
-	private Color activeColor ;
-	private Color inactiveColor ;
+	private final Color activeColor = new Color(80, 80, 80);
+	private final Color inactiveColor = new Color(135, 135, 135);
 	private Color currentColor ; // Will be whether activeColor or inactiveColor
 	private Color backgroundColor;
 	
@@ -38,13 +38,11 @@ public class Element extends JPanel {
 		}
 	};
 	
-	public Element(String label, Color activeColor, Color inactiveColor, Color backgroundColor, int size) {
+	public Element(String label, int size) {
 		super();
 		this.setBackground(backgroundColor);
-		this.activeColor = activeColor;
-		this.inactiveColor = inactiveColor;
 		this.currentColor = inactiveColor;
-		this.backgroundColor = backgroundColor;
+		this.backgroundColor = new Color(0, 0, 0, 0);
 		this.label = label;
 		this.size = size;
 		this.setSize(new Dimension(size, size));
