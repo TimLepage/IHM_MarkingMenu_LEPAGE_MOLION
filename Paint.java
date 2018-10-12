@@ -137,25 +137,29 @@ class Paint extends JFrame {
 				for (AbstractAction tool : tools) {
 					add(tool);
 				}
-				JButton BlueButton = new JButton("Blue");
+				JButton BlueButton = new JButton();
+				BlueButton.setBackground(Color.BLUE);
 				BlueButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						currentColor = Color.BLUE;
 					}
 				});
-				JButton BlackButton = new JButton("Black");
+				JButton BlackButton = new JButton();
+				BlackButton.setBackground(Color.black);
 				BlackButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						currentColor = Color.BLACK;
 					}
 				});
-				JButton GreenButton = new JButton("Green");
+				JButton GreenButton = new JButton();
+				GreenButton.setBackground(Color.GREEN);
 				GreenButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						currentColor = Color.GREEN;
 					}
 				});
-				JButton RedButton = new JButton("Red");
+				JButton RedButton = new JButton();
+				RedButton.setBackground(Color.RED);
 				RedButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						currentColor = Color.RED;
@@ -176,7 +180,7 @@ class Paint extends JFrame {
 				g2.setColor(Color.WHITE);
 				g2.fillRect(0, 0, getWidth(), getHeight());
 
-				Iterator ite = shapeColorMap.iterator();
+				Iterator<ColorShape> ite = shapeColorMap.iterator();
 				while(ite.hasNext()){
 					ColorShape current = (ColorShape) ite.next();
 				    g2.setColor(current.getColor());
