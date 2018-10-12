@@ -15,15 +15,16 @@ public class testApp {
 		f.getContentPane().setLayout(new BorderLayout());
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		List<Element> items = new ArrayList<Element>();
-		items.add(new Element("Menu1", new Color(19, 73, 140), new Color(162, 198, 232), 100));
-		items.add(new Element("Menu2", new Color(19, 73, 140), new Color(162, 198, 232), 100));
-		items.add(new Element("Menu3", new Color(19, 73, 140), new Color(162, 198, 232), 100));
-		items.add(new Element("Menu4", new Color(19, 73, 140), new Color(162, 198, 232), 100));
-		items.add(new Element("Menu5", new Color(19, 73, 140), new Color(162, 198, 232), 100));
-		items.add(new Element("Menu6", new Color(19, 73, 140), new Color(162, 198, 232), 100));
-		items.add(new Element("Menu7", new Color(19, 73, 140), new Color(162, 198, 232), 100));
+		Color backgroundColor = new Color(220, 220, 220);
+		items.add(new Element("Menu1", new Color(19, 73, 140), new Color(162, 198, 232), backgroundColor, 100));
+		items.add(new Element("Menu2", new Color(19, 73, 140), new Color(162, 198, 232), backgroundColor, 100));
+		items.add(new Element("Menu3", new Color(19, 73, 140), new Color(162, 198, 232), backgroundColor, 100));
+		items.add(new Element("Menu4", new Color(19, 73, 140), new Color(162, 198, 232), backgroundColor, 100));
+		items.add(new Element("Menu5", new Color(19, 73, 140), new Color(162, 198, 232), backgroundColor, 100));
+		items.add(new Element("Menu6", new Color(19, 73, 140), new Color(162, 198, 232), backgroundColor, 100));
+		items.add(new Element("Menu7", new Color(19, 73, 140), new Color(162, 198, 232), backgroundColor, 100));
 		f.setSize(600, 600);
-		Menu menu = new Menu(500, 500, 100, 100, items);
+		Menu menu = new Menu(600, 600, 100, 200, backgroundColor, items);
 		f.add(menu, BorderLayout.CENTER);
 		
 		f.setLocationRelativeTo(null);

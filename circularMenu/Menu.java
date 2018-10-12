@@ -3,14 +3,14 @@ package circularMenu;
 import javax.swing.JPanel;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.List;
 
-
-public class Menu extends JPanel{
+public class Menu extends JPanel {
 
 	private List<Element> items;
 
@@ -18,33 +18,37 @@ public class Menu extends JPanel{
 
 	private int radius;
 
-	public Menu(int width, int height, int elementSize, int radius, List<Element> items) {
+	private Color backgroundColor;
+	
+	public Menu(int width, int height, int elementSize, int radius, Color backgroundColor, List<Element> items) {
 		super();
 		setSize(width, height);
 		this.items = items;
 		this.elementSize = elementSize;
 		this.radius = radius;
+		this.backgroundColor = backgroundColor;
 		positionElements();
 	}
-	
-	public void positionElements(){
+
+	public void positionElements() {
+		setLayout(null);
 		double angle = 2 * Math.PI / items.size();
 		int xCenter = getWidth() / 2;
 		int yCenter = getHeight() / 2;
-		for(int i = 0 ; i < items.size(); i++){
+		for (int i = 0; i < items.size(); i++) {
 			items.get(i).setBounds(
 					(int) (xCenter - (elementSize / 2) + radius * Math.cos((i * angle) - (Math.PI / 2))),
 					(int) (yCenter - (elementSize / 2) + radius * Math.sin((i * angle) - (Math.PI / 2))),
-					elementSize,
-					elementSize
-					);
+					elementSize, elementSize);
 			add(items.get(i));
 		}
 	}
-	
+
 	@Override
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.fillRect(0, 0, getWidth(), getHeight());	}
-	
+		g2d.setColor(backgroundColor);
+		g2d.fillRect(0, 0, getWidth(), getHeight());
+	}
+
 }
