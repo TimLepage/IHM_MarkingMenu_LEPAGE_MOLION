@@ -15,6 +15,8 @@ public class Menu extends JPanel {
 	private Element centerElement ;
 	private List<Element> items;
 
+	private int x;
+	private int y;
 	private int elementSize;
 
 	private int radius;
@@ -22,10 +24,12 @@ public class Menu extends JPanel {
 	private Color backgroundColor;
 	
 	
-	public Menu(int width, int height, int elementSize, int radius, List<Element> items) {
+	public Menu(int x, int y, int width, int height, int elementSize, int radius, List<Element> items) {
 		super();
 		this.centerElement = new Element("Cancel", elementSize);
 		setSize(width, height);
+		this.x = x;
+		this.y = y;
 		this.items = items;
 		this.elementSize = elementSize;
 		this.radius = radius;
@@ -36,8 +40,8 @@ public class Menu extends JPanel {
 	public void positionElements() {
 		setLayout(null);
 		double angle = 2 * Math.PI / this.items.size();
-		int xCenter = getWidth() / 2;
-		int yCenter = getHeight() / 2;
+		int xCenter = this.x;
+		int yCenter = this.y;
 		for (int i = 0; i < items.size(); i++) {
 			items.get(i).setBounds(
 					(int) (xCenter - (elementSize / 2) + radius * Math.cos((i * angle) - (Math.PI / 2))),
