@@ -26,7 +26,7 @@ public class testApp {
 		items.add(new Element("Menu7", elementSize));
 		items.add(new Element("Menu7", elementSize));
 		f.setSize(600, 600);
-		Menu menu = new Menu(600, 600, 50, 70, items);
+		Menu menu = new Menu(300, 300, 600, 600, elementSize, 70, items);
 		f.add(menu, BorderLayout.CENTER);
 	
 		

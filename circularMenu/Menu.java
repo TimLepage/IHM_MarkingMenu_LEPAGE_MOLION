@@ -3,11 +3,8 @@ package circularMenu;
 import javax.swing.JPanel;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.util.List;
 
 public class Menu extends JPanel {
@@ -15,6 +12,8 @@ public class Menu extends JPanel {
 	private Element centerElement ;
 	private List<Element> items;
 
+	private int x;
+	private int y;
 	private int elementSize;
 
 	private int radius;
@@ -22,10 +21,12 @@ public class Menu extends JPanel {
 	private Color backgroundColor;
 	
 	
-	public Menu(int width, int height, int elementSize, int radius, List<Element> items) {
+	public Menu(int x, int y, int width, int height, int elementSize, int radius, List<Element> items) {
 		super();
 		this.centerElement = new Element("Cancel", elementSize);
 		setSize(width, height);
+		this.x = x;
+		this.y = y;
 		this.items = items;
 		this.elementSize = elementSize;
 		this.radius = radius;
@@ -37,8 +38,8 @@ public class Menu extends JPanel {
 		setLayout(null);
 		int inCircle = Math.min(items.size(), 7);
 		double angle = 2 * Math.PI / inCircle;
-		int xCenter = getWidth() / 2;
-		int yCenter = getHeight() / 2;
+		int xCenter = this.x;
+		int yCenter = this.y;
 		int vertSpace = elementSize + 5 ; // vertical space between +7 items
 		for (int i = 0; i < inCircle; i++) {
 			items.get(i).setBounds(

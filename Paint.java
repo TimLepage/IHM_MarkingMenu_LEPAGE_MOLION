@@ -23,6 +23,9 @@ import java.awt.geom.Rectangle2D;
 import java.awt.event.*;
 import javax.swing.event.*;
 
+import circularMenu.Element;
+import circularMenu.Menu;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.AbstractAction;
@@ -36,6 +39,7 @@ class Paint extends JFrame {
 	Vector<Shape> shapes = new Vector<Shape>();
 	List<ColorShape> shapeColorMap = new ArrayList<ColorShape>();
 	Color currentColor = Color.BLACK;
+		
 
 	class Tool extends AbstractAction implements MouseInputListener {
 		Point o;
@@ -55,6 +59,9 @@ class Paint extends JFrame {
 		}
 
 		public void mouseClicked(MouseEvent e) {
+			if (e.getButton() == MouseEvent.BUTTON3) {
+				System.out.println("Right Click!");
+			}
 		}
 
 		public void mouseEntered(MouseEvent e) {
@@ -121,6 +128,7 @@ class Paint extends JFrame {
 
 	public Paint(String title) {
 		super(title);
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(800, 600));
 		add(new JToolBar() {
@@ -172,11 +180,45 @@ class Paint extends JFrame {
 				g2.fillRect(0, 0, getWidth(), getHeight());
 
 				Iterator<ColorShape> ite = shapeColorMap.iterator();
-				while(ite.hasNext()){
+				while (ite.hasNext()) {
 					ColorShape current = (ColorShape) ite.next();
-				    g2.setColor(current.getColor());
-				    g2.draw(current.getShape());
+					g2.setColor(current.getColor());
+					g2.draw(current.getShape());
 				}
+			}
+		});
+		
+
+		List<Element> itemsFirstMenu = new ArrayList<Element>();
+		itemsFirstMenu.add(new Element("Forme", 50));
+		itemsFirstMenu.add(new Element("Couleur", 50));
+
+		
+		panel.addMouseListener(new MouseListener() { //The listener that will make the menu pop on right click
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Menu menu = new Menu(e.getX(), e.getY(), 800, 600, 50, 70, itemsFirstMenu);
+				if (e.getButton() == MouseEvent.BUTTON3) {//if right click
+					panel.add(menu, BorderLayout.CENTER);
+					panel.repaint();
+				}
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
 			}
 		});
 
