@@ -35,15 +35,25 @@ public class Menu extends JPanel {
 
 	public void positionElements() {
 		setLayout(null);
-		double angle = 2 * Math.PI / this.items.size();
+		int inCircle = Math.min(items.size(), 7);
+		double angle = 2 * Math.PI / inCircle;
 		int xCenter = getWidth() / 2;
 		int yCenter = getHeight() / 2;
-		for (int i = 0; i < items.size(); i++) {
+		int vertSpace = elementSize + 5 ; // vertical space between +7 items
+		for (int i = 0; i < inCircle; i++) {
 			items.get(i).setBounds(
 					(int) (xCenter - (elementSize / 2) + radius * Math.cos((i * angle) - (Math.PI / 2))),
 					(int) (yCenter - (elementSize / 2) + radius * Math.sin((i * angle) - (Math.PI / 2))),
 					this.elementSize, this.elementSize);
 			add(items.get(i));
+		}
+		for(int nItem = 7, i = 0 ; nItem < items.size(); i++, nItem++){
+			items.get(nItem).setBounds(
+					xCenter - (elementSize / 2) , 
+					yCenter + (elementSize / 2) + radius + i * vertSpace,
+					this.elementSize, this.elementSize
+					);
+			add(items.get(nItem));
 		}
 		this.centerElement.setBounds(xCenter - this.elementSize / 2, yCenter - this.elementSize / 2, this.elementSize, this.elementSize);
 		add(this.centerElement);
