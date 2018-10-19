@@ -1,12 +1,11 @@
 package circularMenu;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 
 public class testApp {
 
@@ -26,6 +25,7 @@ public class testApp {
 		f.setSize(600, 600);
 		Menu menu = new Menu(600, 600, 100, 200, items);
 		f.add(menu, BorderLayout.CENTER);
+	
 		
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
