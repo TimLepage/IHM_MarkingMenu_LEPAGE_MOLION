@@ -1,11 +1,9 @@
+package paintWindow;
 import static java.lang.Math.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Vector;
 
 import java.awt.BorderLayout;
@@ -35,10 +33,12 @@ import javax.swing.SwingUtilities;
 
 /* paint *******************************************************************/
 
-class Paint extends JFrame {
+public class Paint extends JFrame {
 	Vector<Shape> shapes = new Vector<Shape>();
 	List<ColorShape> shapeColorMap = new ArrayList<ColorShape>();
 	Color currentColor = Color.BLACK;
+	public static int centerClickx = 0;
+	public static int centerClicky = 0;
 		
 
 	class Tool extends AbstractAction implements MouseInputListener {
@@ -187,28 +187,18 @@ class Paint extends JFrame {
 				}
 			}
 		});
-		
-
+	
 		List<Element> itemsFirstMenu = new ArrayList<Element>();
-		itemsFirstMenu.add(new Element("Forme", 50));
-		itemsFirstMenu.add(new Element("Couleur", 50));
-		
-		List<Element> itemsShapeMenu = new ArrayList<Element>();
-		itemsShapeMenu.add(new Element("Pinceau", 50));
-		itemsShapeMenu.add(new Element("Rectangle", 50));
-		itemsShapeMenu.add(new Element("Ovale", 50));
-		
-		List<Element> itemsColorMenu = new ArrayList<Element>();
-		itemsColorMenu.add(new Element("Noir", 50));
-		itemsColorMenu.add(new Element("Rouge", 50));
-		itemsColorMenu.add(new Element("Bleu", 50));
-		itemsColorMenu.add(new Element("Vert", 50));
+		itemsFirstMenu.add(new Element("Forme", 50, panel));
+		itemsFirstMenu.add(new Element("Couleur", 50, panel));
 		
 		panel.addMouseListener(new MouseListener() { //The listener that will make the menu pop on right click
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Menu menu = new Menu(e.getX(), e.getY(), 800, 600, 50, 70, itemsFirstMenu);
+				centerClickx = e.getX();
+				centerClicky = e.getY();
+				Menu menu = new Menu(e.getX(), e.getY(), 800, 600, 50, 70, itemsFirstMenu, panel);
 				if (e.getButton() == MouseEvent.BUTTON3) {//if right click
 					panel.add(menu, BorderLayout.CENTER); //display the first menu
 					panel.repaint();

@@ -24,9 +24,9 @@ public class Menu extends JPanel {
 	private Color backgroundColor;
 	
 	
-	public Menu(int x, int y, int width, int height, int elementSize, int radius, List<Element> items) {
+	public Menu(int x, int y, int width, int height, int elementSize, int radius, List<Element> items, JPanel panel) {
 		super();
-		this.centerElement = new Element("Cancel", elementSize);
+		this.centerElement = new Element("Cancel", elementSize, panel);
 		setSize(width, height);
 		this.x = x;
 		this.y = y;

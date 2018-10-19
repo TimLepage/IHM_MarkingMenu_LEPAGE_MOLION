@@ -1,3 +1,4 @@
+package paintWindow;
 import java.awt.Color;
 import java.awt.Shape;
 
