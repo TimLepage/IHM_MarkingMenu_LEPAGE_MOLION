@@ -191,8 +191,18 @@ class Paint extends JFrame {
 
 		List<Element> itemsFirstMenu = new ArrayList<Element>();
 		itemsFirstMenu.add(new Element("Forme", 50));
-		itemsFirstMenu.add(new Element("Couelur", 50));
-
+		itemsFirstMenu.add(new Element("Couleur", 50));
+		
+		List<Element> itemsShapeMenu = new ArrayList<Element>();
+		itemsShapeMenu.add(new Element("Pinceau", 50));
+		itemsShapeMenu.add(new Element("Rectangle", 50));
+		itemsShapeMenu.add(new Element("Ovale", 50));
+		
+		List<Element> itemsColorMenu = new ArrayList<Element>();
+		itemsColorMenu.add(new Element("Noir", 50));
+		itemsColorMenu.add(new Element("Rouge", 50));
+		itemsColorMenu.add(new Element("Bleu", 50));
+		itemsColorMenu.add(new Element("Vert", 50));
 		
 		panel.addMouseListener(new MouseListener() { //The listener that will make the menu pop on right click
 
@@ -200,7 +210,7 @@ class Paint extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Menu menu = new Menu(e.getX(), e.getY(), 800, 600, 50, 70, itemsFirstMenu);
 				if (e.getButton() == MouseEvent.BUTTON3) {//if right click
-					panel.add(menu, BorderLayout.CENTER);
+					panel.add(menu, BorderLayout.CENTER); //display the first menu
 					panel.repaint();
 				}
 			}

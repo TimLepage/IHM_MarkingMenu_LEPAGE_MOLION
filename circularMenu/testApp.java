@@ -1,12 +1,11 @@
 package circularMenu;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 
 public class testApp {
 
@@ -16,16 +15,19 @@ public class testApp {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		List<Element> items = new ArrayList<Element>();
 		
-		items.add(new Element("Menu1", 100));
-		items.add(new Element("Menu2", 100));
-		items.add(new Element("Menu3", 100));
-		items.add(new Element("Menu4", 100));
-		items.add(new Element("Menu5", 100));
-		items.add(new Element("Menu6", 100));
-		items.add(new Element("Menu7", 100));
+		items.add(new Element("Menu1", 50));
+		items.add(new Element("Menu2", 50));
+		items.add(new Element("Menu3", 50));
+		items.add(new Element("Menu4", 50));
+		items.add(new Element("Menu5", 50));
+		items.add(new Element("Menu6", 50));
+		items.add(new Element("Menu7", 50));
+	//	items.add(new Element("Menu7", 50));
+
 		f.setSize(600, 600);
-		Menu menu = new Menu(300, 300, 600, 600, 100, 200, items);
+		Menu menu = new Menu(300, 300, 600, 600, 50, 70, items);
 		f.add(menu, BorderLayout.CENTER);
+	
 		
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
