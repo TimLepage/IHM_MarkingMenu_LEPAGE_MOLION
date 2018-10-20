@@ -1,4 +1,4 @@
-package circularMenu;
+package view;
 
 import javax.swing.JPanel;
 
@@ -19,7 +19,6 @@ public class Menu extends JPanel {
 	private int radius;
 
 	private Color backgroundColor;
-	
 	
 	public Menu(int x, int y, int width, int height, int elementSize, int radius, List<Element> items) {
 		super();

@@ -1,4 +1,4 @@
-package circularMenu;
+package view;
 
 import javax.swing.JPanel;
 
