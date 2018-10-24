@@ -13,6 +13,8 @@ public class PanelMouseListener implements MouseListener{
 
 	JPanel associatedPanel ;
 	Controler associatedControler ;
+	static int clickx;
+	static int clicky;
 	
 	public PanelMouseListener(Controler controler, JPanel panel) {
 		super();
@@ -23,7 +25,11 @@ public class PanelMouseListener implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON3) {//if right click
-			Menu menu = new Menu(e.getX(), e.getY(), 800, 600, 50, 70, associatedControler.getModel().getElementsList());
+			associatedControler.getView().repaint();
+			associatedPanel.repaint();
+			clickx = e.getX();
+			clicky = e.getY();
+			Menu menu = new Menu(e.getX(), e.getY(), 800, 600, 50, 70, associatedControler.getModel().getElementsList(), associatedControler.getView());
 			associatedPanel.add(menu, BorderLayout.CENTER);
 			associatedPanel.repaint();
 		}

@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Menu extends JPanel {
 
+
+
 	private Element centerElement ;
 	private List<Element> items;
 
@@ -20,9 +22,17 @@ public class Menu extends JPanel {
 
 	private Color backgroundColor;
 	
-	public Menu(int x, int y, int width, int height, int elementSize, int radius, List<Element> items) {
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	
+	public Menu(int x, int y, int width, int height, int elementSize, int radius, List<Element> items, View view) {
 		super();
-		this.centerElement = new Element("Cancel", elementSize);
+		this.centerElement = new Element("Cancel", elementSize, this, view);
 		setSize(width, height);
 		this.x = x;
 		this.y = y;

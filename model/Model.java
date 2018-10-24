@@ -5,6 +5,7 @@ import java.util.List;
 
 import view.Element;
 import view.Tool;
+import view.View;
 
 public class Model {
 
@@ -12,10 +13,10 @@ public class Model {
 
 	Tool currentTool;
 
-	public Model() {
+	public Model(View view) {
 		List<Element> buildList = new ArrayList<Element>();
-		buildList.add(new Element("Outil", 50));
-		buildList.add(new Element("Couleur", 50));
+		buildList.add(new Element("Outil", 50, view.getPanel(), view));
+		buildList.add(new Element("Couleur", 50, view.getPanel(), view));
 		elementsList = buildList; 
 	}
 	

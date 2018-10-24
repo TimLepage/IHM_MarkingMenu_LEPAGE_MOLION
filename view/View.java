@@ -32,7 +32,8 @@ import model.Model;
 
 public class View extends JFrame {
 
-	private Model model = new Model();
+	private Model model = new Model(this);
+
 	private Controler controler;
 
 	private JPanel panel;
@@ -70,7 +71,7 @@ public class View extends JFrame {
 			}
 		});
 		
-		controler = new Controler();
+		controler = new Controler(this);
 		controler.addMouseListeners(this);
 
 		add(toolBar, BorderLayout.NORTH);
@@ -110,6 +111,21 @@ public class View extends JFrame {
 
 	public Tool getCurrentTool() {
 		return currentTool;
+	}
+	public Color getCurrentColor() {
+		return currentColor;
+	}
+
+	public void setCurrentColor(Color currentColor) {
+		this.currentColor = currentColor;
+	}
+
+	public void setCurrentTool(Tool currentTool) {
+		this.currentTool = currentTool;
+	}
+	
+	public Tool[] getToolbar(){
+		return this.tools;
 	}
 
 	private Tool[] fillToolsArray() {

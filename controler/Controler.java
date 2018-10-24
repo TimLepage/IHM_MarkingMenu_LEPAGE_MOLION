@@ -9,9 +9,11 @@ import view.View;
 public class Controler {
 
 	Model model ;
+	View view;
 	
-	public Controler() {
-		model = new Model();
+	public Controler(View view) {
+		model = new Model(view);
+		this.view = view;
 	}
 	
 	public void addMouseListeners(View view) {
@@ -20,6 +22,9 @@ public class Controler {
 
 	public Model getModel(){
 		return model ;
+	}
+	public View getView(){
+		return this.view;
 	}
 	
 }
