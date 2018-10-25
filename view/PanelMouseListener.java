@@ -25,13 +25,13 @@ public class PanelMouseListener implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON3) {//if right click
-			associatedControler.getView().repaint();
-			associatedPanel.repaint();
+			associatedPanel.removeAll();
 			clickx = e.getX();
 			clicky = e.getY();
 			Menu menu = new Menu(e.getX(), e.getY(), 800, 600, 50, 70, associatedControler.getModel().getElementsList(), associatedControler.getView());
 			associatedPanel.add(menu, BorderLayout.CENTER);
 			associatedPanel.repaint();
+			associatedControler.getView().repaint();
 		}
 	}
 

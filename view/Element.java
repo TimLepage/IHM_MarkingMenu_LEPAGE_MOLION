@@ -26,28 +26,18 @@ public class Element extends JPanel {
 	private JPanel parent;
 	private String label;
 	private View view;
-	private static int oldclickx;
-	private static int oldclicky;
 
 	private int size;
 
 	private MouseListener mouseListener = new MouseListener() {
 		public void mouseClicked(MouseEvent e) {
-			if (label.equals("Cancel")) {
-				System.out.println("Cancel");
+			if (label.equals("Annuler")) {
+				System.out.println("Annuler");
 				parent.removeAll();
-				view.repaint();
-				removeAll();
-				repaint();
-				List<Element> buildList = new ArrayList<Element>();
-				buildList.add(new Element("Outil", 50, view.getPanel(), view));
-				buildList.add(new Element("Couleur", 50, view.getPanel(), view));
-				Menu menu = new Menu(oldclickx, oldclicky, 800, 600, 50, 70,
-						buildList, view);
-				parent.add(menu, BorderLayout.CENTER);
 				parent.repaint();
-				view.repaint();
-			}			
+				parent.revalidate();
+				repaint();
+			}
 		}
 
 		public void mouseReleased(MouseEvent e) {
@@ -68,32 +58,31 @@ public class Element extends JPanel {
 				parent.removeAll();
 				view.repaint();
 				List<Element> itemsShapeMenu = new ArrayList<Element>();
-				itemsShapeMenu.add(new Element("Pinceau", 50, parent, view));
-				itemsShapeMenu.add(new Element("Rectangle", 50, parent, view));
-				itemsShapeMenu.add(new Element("Oval", 50, parent, view));
-				oldclickx = PanelMouseListener.clickx;
-				oldclicky = PanelMouseListener.clicky - 70;
-				Menu menu = new Menu(oldclickx, oldclicky, 800, 600, 50, 70,
+				itemsShapeMenu.add(new Element("Pinceau", 50, parent, view, new Color(135, 135, 135)));
+				itemsShapeMenu.add(new Element("Rectangle", 50, parent, view, new Color(135, 135, 135)));
+				itemsShapeMenu.add(new Element("Oval", 50, parent, view, new Color(135, 135, 135)));
+				Menu menu = new Menu(PanelMouseListener.clickx, PanelMouseListener.clicky - 70, 800, 600, 50, 70,
 						itemsShapeMenu, view);
 				parent.add(menu, BorderLayout.CENTER);
-				view.repaint();
 				parent.repaint();
 			} else if (label.equals("Couleur")) {
 				parent.removeAll();
-				view.repaint();
 				List<Element> itemsColorMenu = new ArrayList<Element>();
-				itemsColorMenu.add(new Element("Noir", 50, parent, view));
-				itemsColorMenu.add(new Element("Rouge", 50, parent, view));
-				itemsColorMenu.add(new Element("Bleu", 50, parent, view));
-				itemsColorMenu.add(new Element("Vert", 50, parent, view));
-				oldclickx = PanelMouseListener.clickx;
-				oldclicky = PanelMouseListener.clicky + 70;
-				Menu menu = new Menu(oldclickx, oldclicky, 800, 600, 50, 70,
+				itemsColorMenu.add(new Element("Noir", 50, parent, view, Color.black));
+				itemsColorMenu.add(new Element("Rose", 50, parent, view, Color.PINK));
+				itemsColorMenu.add(new Element("Orange", 50, parent, view, Color.ORANGE));
+				itemsColorMenu.add(new Element("Jaune", 50, parent, view, Color.YELLOW));
+				itemsColorMenu.add(new Element("Rouge", 50, parent, view, Color.RED));
+				itemsColorMenu.add(new Element("Bleu", 50, parent, view, Color.BLUE));
+				itemsColorMenu.add(new Element("Vert", 50, parent, view, Color.GREEN));
+				itemsColorMenu.add(new Element("Magenta", 50, parent, view, Color.MAGENTA));
+				itemsColorMenu.add(new Element("Gris", 50, parent, view, Color.GRAY));
+				Menu menu = new Menu(PanelMouseListener.clickx, PanelMouseListener.clicky + 70, 800, 600, 50, 70,
 						itemsColorMenu, view);
 				parent.add(menu, BorderLayout.CENTER);
 				view.repaint();
 				parent.repaint();
-			} else if (!label.equals("Cancel")) {
+			} else if (!label.equals("Annuler")) {
 				parent.removeAll();
 				parent.repaint();
 				if (label.equals("Noir")) {
@@ -104,6 +93,16 @@ public class Element extends JPanel {
 					view.setCurrentColor(Color.BLUE);
 				} else if (label.equals("Vert")) {
 					view.setCurrentColor(Color.GREEN);
+				} else if (label.equals("Jaune")) {
+					view.setCurrentColor(Color.YELLOW);
+				} else if (label.equals("Orange")) {
+					view.setCurrentColor(Color.ORANGE);
+				} else if (label.equals("Rose")) {
+					view.setCurrentColor(Color.PINK);
+				} else if (label.equals("Magenta")) {
+					view.setCurrentColor(Color.MAGENTA);
+				} else if (label.equals("Gris")) {
+					view.setCurrentColor(Color.GRAY);
 				}
 				if (label.equals("Pinceau")) {
 					JButton selectedTool = new JButton(view.getToolbar()[0]);
@@ -121,12 +120,12 @@ public class Element extends JPanel {
 		}
 	};
 
-	public Element(String label, int size, JPanel panel, View view) {
+	public Element(String label, int size, JPanel panel, View view, Color color) {
 		super();
 		this.view = view;
 		this.parent = panel;
 		this.setBackground(backgroundColor);
-		this.currentColor = inactiveColor;
+		this.currentColor = color;
 		this.backgroundColor = new Color(0, 0, 0, 0);
 		this.label = label;
 		this.size = size;
@@ -150,7 +149,7 @@ public class Element extends JPanel {
 		int x = (getWidth() - metrics.stringWidth(label)) / 2;
 		int y = ((getHeight() - metrics.getHeight()) / 2) + metrics.getAscent();
 		g2d.setFont(font);
-		g2d.setColor(Color.BLACK);
+		g2d.setColor(Color.WHITE);
 		g2d.drawString(label, x, y);
 
 	}
