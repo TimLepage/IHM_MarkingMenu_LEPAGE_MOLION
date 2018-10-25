@@ -1,5 +1,11 @@
 # IHM_MarkingMenu_LEPAGE_MOLION
 
+Utilisation:
+Clic droit pour faire apparaitre le menu.
+La séléction des éléments du menu se fait en survolant avec la souris l'élément.
+De base, aucun outil n'est sélectionné, il vous faut en choisir un pour commencer à dessiner.
+
+
 Choix d'implémentation:
 La séléction d'un élément du menu se fait par survol avec la souris, permettant d'être très rapide pour un utilisateur expert mais aussi cela rend le menu plus propice aux "missclicks" pour un utilisateur débutant.
 Les menus sont limités à 7 éléments, au delà de ce nombre, les éléments sont affichés en dessous du menu, entre les deux éléments du menu circulaire à 7 éléments. En revanche comme nous avons choisi de faire la séléction des éléments au survol de la souris, ces éléments ne sont pas accessibles (car on doit survoler d'autres éléments forcément pour les atteindre). Ce prblème pourrait être corrigé en utilisant le MousePressed et MouseReleased au lieu du MouseEntered pour gerer le menu.
